@@ -46,27 +46,39 @@ git push -u origin main
 ## 3. Step 2: Deploy Backend to Render (or Railway)
 
 ### Option A: Render.com (Recommended Free/Budget Tier)
-1. Log in to [Render Dashboard](https://dashboard.render.com).
-2. Click **New +** → **Web Service**.
-3. Connect your GitHub repository (`SMS Finance Service`).
-4. Set the following settings:
+
+#### 1. First, Create a PostgreSQL Database on Render:
+1. In [Render Dashboard](https://dashboard.render.com), click **New +** → **PostgreSQL**.
+2. Settings:
+   - **Name**: `sms-finance-db`
+   - **Database**: `finance_service`
+   - **User**: `finance_user`
+   - **Region**: Select a region (e.g. *Singapore* or *Ohio*) — **note**: choose the same region for your Web Service.
+   - **Plan**: Free
+3. Click **Create Database**.
+4. Once created, scroll to the **Connections** section:
+   - Copy the **Internal Database URL** (e.g., `postgresql://finance_user:...@dpg-xxx-a/finance_service`).
+   *(The backend code automatically parses this URL format into a valid JDBC connection).*
+
+#### 2. Create the Web Service for the Backend:
+1. Click **New +** → **Web Service**.
+2. Connect your GitHub repository (`SMS Finance Service`).
+3. Set the following settings:
    - **Name**: `sms-finance-api`
-   - **Region**: Choose closest to your clients (e.g., *Singapore*, *Frankfurt*, or *Ohio*)
+   - **Region**: **Same region** as your PostgreSQL database
    - **Root Directory**: `backend`
    - **Environment**: **Docker** (Render will automatically detect `backend/Dockerfile`)
    - **Branch**: `main`
    - **Health Check Path**: `/api/health`
-5. Under **Environment Variables**, add:
+4. Under **Environment Variables**, add:
    | Key | Value | Description |
    |---|---|---|
-   | `PORT` | `8080` | Container web port |
+   | `DATABASE_URL` | `<Paste Internal Database URL from step 1>` | Render PostgreSQL connection |
+   | `PORT` | `8080` | Container port (or Render default) |
    | `SPRING_PROFILES_ACTIVE` | `prod` | Activates production profile |
-   | `CORS_ALLOWED_ORIGINS` | `https://your-frontend.vercel.app` (or `*` during initial setup) | Allowed frontend domains |
-   | `SPRING_DATASOURCE_URL` | `jdbc:postgresql://<db-host>:5432/<db-name>` | PostgreSQL JDBC URL (or use Render PostgreSQL) |
-   | `SPRING_DATASOURCE_USERNAME` | `<db-user>` | PostgreSQL username |
-   | `SPRING_DATASOURCE_PASSWORD` | `<db-password>` | PostgreSQL password |
-6. Click **Create Web Service**.
-7. Once deployed, copy your live backend URL (e.g. `https://sms-finance-api.onrender.com`).
+   | `CORS_ALLOWED_ORIGINS` | `*` (or your frontend `https://your-frontend.vercel.app`) | Allowed frontend origins |
+5. Click **Create Web Service**.
+6. Once deployed, verify `https://sms-finance-api.onrender.com/api/health` returns `UP`.
 
 ---
 

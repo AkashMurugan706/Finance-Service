@@ -1,0 +1,58 @@
+{
+  "groups": [
+    {
+      "name": "app.finance",
+      "type": "com.finance.smsfinance.config.AppBrandConfig",
+      "sourceType": "com.finance.smsfinance.config.AppBrandConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.finance.brand-name",
+      "type": "java.lang.String",
+      "sourceType": "com.finance.smsfinance.config.AppBrandConfig",
+      "defaultValue": "SMS Finance Service"
+    },
+    {
+      "name": "app.finance.contact-email",
+      "type": "java.lang.String",
+      "sourceType": "com.finance.smsfinance.config.AppBrandConfig",
+      "defaultValue": "support@smsfinance.com"
+    },
+    {
+      "name": "app.finance.contact-phoneNumber",
+      "type": "java.lang.String",
+      "sourceType": "com.finance.smsfinance.config.AppBrandConfig",
+      "defaultValue": "+91 98400 12345"
+    },
+    {
+      "name": "app.finance.currency-symbol",
+      "type": "java.lang.String",
+      "sourceType": "com.finance.smsfinance.config.AppBrandConfig",
+      "defaultValue": "₹"
+    },
+    {
+      "name": "app.finance.daily-penalty-percentage",
+      "type": "java.math.BigDecimal",
+      "sourceType": "com.finance.smsfinance.config.AppBrandConfig"
+    },
+    {
+      "name": "app.finance.default-grace-days",
+      "type": "java.lang.Integer",
+      "sourceType": "com.finance.smsfinance.config.AppBrandConfig",
+      "defaultValue": 3
+    },
+    {
+      "name": "app.finance.default-vatti-rate-per-hundred",
+      "type": "java.math.BigDecimal",
+      "sourceType": "com.finance.smsfinance.config.AppBrandConfig"
+    },
+    {
+      "name": "app.finance.tagline",
+      "type": "java.lang.String",
+      "sourceType": "com.finance.smsfinance.config.AppBrandConfig",
+      "defaultValue": "Empowering Local Enterprise & Community Lending"
+    }
+  ],
+  "hints": []
+}

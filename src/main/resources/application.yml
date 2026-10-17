@@ -1,0 +1,40 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: sms-finance-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/finance_service
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: Akash@2000
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+  mvc:
+    problemdetails:
+      enabled: true
+
+# Dynamic Brand & Finance Business Configuration
+app:
+  finance:
+    brand-name: "SMS Finance Service"
+    tagline: "Empowering Local Enterprise & Community Lending"
+    currency-symbol: "₹"
+    contact-phoneNumber: "+91 98400 12345"
+    contact-email: "support@smsfinance.com"
+    default-vatti-rate-per-hundred: 2.00 # ₹2 per ₹100 per month (24% per annum)
+    default-grace-days: 3
+    daily-penalty-percentage: 0.10
